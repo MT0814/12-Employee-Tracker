@@ -17,22 +17,21 @@ const db = mysql.createConnection(
 );
 
 db.connect((err) => {
-  if (err) throw err;
   welcome();
 })
 
 
 
 const welcome = () => {
-  console.log("⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆")
+  console.log("⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆")
   console.log("⋆   __         __       __       __  __   ⋆")
   console.log("⋆  |__ |\\  /| |__| |   |  | \\ / |__ |__   ⋆")
   console.log("⋆  |__ | \\/ | |    |__ |__|  |  |__ |__   ⋆")
   console.log("⋆           _          _    __   __  __   ⋆")
   console.log("⋆  |\\  /|  /_\\  |\\ |  /_\\  | _  |__ |__|  ⋆")
-  console.log("⋆  | \\/ | /   \\ | \\| /   \\ |__| |__ |  |  ⋆")
+  console.log("⋆  | \\/ | /   \\ | \\| /   \\ |__| |__ |  \\  ⋆")
   console.log("⋆                                         ⋆")
-  console.log("⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆")
+  console.log("⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆")
   questionsInit();
 }
 
@@ -56,7 +55,7 @@ const questionsInit = () => {
   inquirer.prompt([
     {
       type: "rawlist",
-      message: "Select an item on the list",
+      message: "Select an item from the list",
       name: "choice",
       choices: mainLists,
     }
@@ -121,19 +120,17 @@ const questionsInit = () => {
 
 // View all employees 
 const viewAllEmployees = () => {
-  const sql = `SELECT employee.id, 
-                      employee.first_name, 
-                      employee.last_name, 
-                      role.title, 
-                      department.name AS department,
-                      role.salary, 
-                      CONCAT (manager.first_name, " ", manager.last_name) AS manager
-               FROM employee
-                      LEFT JOIN role ON employee.role_id = role.id
-                      LEFT JOIN department ON role.department_id = department.id
-                      LEFT JOIN employee manager ON employee.manager_id = manager.id`;
-
-  db.query(sql, (err, result) => {
+  db.query(`SELECT employee.id, 
+  employee.first_name, 
+  employee.last_name, 
+  role.title, 
+  department.name AS department,
+  role.salary, 
+  CONCAT (manager.first_name, " ", manager.last_name) AS manager
+FROM employee
+  LEFT JOIN role ON employee.role_id = role.id
+  LEFT JOIN department ON role.department_id = department.id
+  LEFT JOIN employee manager ON employee.manager_id = manager.id`, (err, result) => {
     if (err) {
       console.log(err);
     }
