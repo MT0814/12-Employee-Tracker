@@ -111,8 +111,8 @@ const questionsInit = () => {
         deleteEmployee();
       }
 
-      if (answers.choice === "leave") {
-        console.log("Done! Your employees data has been updated!")
+      if (answers.choice === "Leave") {
+        console.log("Bye!")
         db.end();
       }
 
@@ -234,9 +234,9 @@ const addRole = () => {
       type: 'input',
       name: 'salary',
       message: "Please enter a salary for this role.",
-      validate: addSalary => {
+      validate: function (addSalary) {
         if (isNaN(addSalary)) {
-          return "Please enter a salary";
+          return "Please enter a salary."
         } else {
           return true;
         }
@@ -507,7 +507,6 @@ const deleteDept = () => {
 
 // Delete a role
 const deleteRole = () => {
-
   db.query(`SELECT * FROM role`, (err, result) => {
     if (err) {
       console.log(err);
