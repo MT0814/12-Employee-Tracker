@@ -534,3 +534,32 @@ const deleteRole = () => {
       });
   });
 };
+
+// Delete an employee
+const deleteEmployee = () => {
+
+  db.query(`SELECT * FROM employee`, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    const employees = result.map(({ id, first_name, last_name }) => ({ name: first_name + " " + last_name, value: id }));
+    inquirer.prompt([
+      {
+        type: 'list',
+        name: 'employee',
+        message: "Please select an employee that you want to delete.",
+        choices: employees
+      }
+    ])
+      .then(employeeChoice => {
+        const employee = employeeChoice.employee;
+        db.query(`DELETE FROM employee WHERE id = ?`, employee, (err, result) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log("Done! This employee has been deleted!");
+          viewAllEmployees();
+        });
+      });
+  });
+};
