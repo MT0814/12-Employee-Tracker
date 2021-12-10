@@ -65,52 +65,52 @@ const questionsInit = () => {
         viewAllEmployees();
       }
 
-      if (answers.choice === "View All Departments") {
+      else if (answers.choice === "View All Departments") {
         viewAllDepts();
       }
 
-      if (answers.choice === "View All Employees By Department") {
+      else if (answers.choice === "View All Employees By Department") {
         employeeByDept();
       }
 
 
-      if (answers.choice === "View All Roles") {
+      else if (answers.choice === "View All Roles") {
         viewAllRoles();
       }
 
-      if (answers.choice === "Add A Department") {
+      else if (answers.choice === "Add A Department") {
         addDept();
       }
 
-      if (answers.choice === "Add A Role") {
+      else if (answers.choice === "Add A Role") {
         addRole();
       }
 
-      if (answers.choice === "Add An Employee") {
+      else if (answers.choice === "Add An Employee") {
         addEmployee();
       }
 
-      if (answers.choice === "Update An Employee Role") {
+      else if (answers.choice === "Update An Employee Role") {
         updateEmployee();
       }
 
-      if (answers.choice === "Update A Manager") {
+      else if (answers.choice === "Update A Manager") {
         updateManager();
       }
 
-      if (answers.choice === "Delete A Department") {
+      else if (answers.choice === "Delete A Department") {
         deleteDept();
       }
 
-      if (answers.choice === "Delete A Role") {
+      else if (answers.choice === "Delete A Role") {
         deleteRole();
       }
 
-      if (answers.choice === "Delete An Employee") {
+      else if (answers.choice === "Delete An Employee") {
         deleteEmployee();
       }
 
-      if (answers.choice === "Leave") {
+      else if (answers.choice === "Leave") {
         console.log("Bye!")
         db.end();
       }
