@@ -21,7 +21,6 @@ db.connect((err) => {
 })
 
 
-
 const welcome = () => {
   console.log("⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆ ⋆")
   console.log("⋆   __         __       __       __  __   ⋆")
@@ -141,9 +140,8 @@ FROM employee
 
 // View all departments
 const viewAllDepts = () => {
-  const sql = `SELECT department.id AS id, department.name AS department FROM department`;
 
-  db.query(sql, (err, result) => {
+  db.query(`SELECT department.id AS id, department.name AS department FROM department`, (err, result) => {
     if (err) {
       console.log(err);
     }
@@ -260,10 +258,8 @@ const addRole = () => {
             const dept = deptChoice.dept;
             params.push(dept);
 
-            const sql = `INSERT INTO role (title, salary, department_id)
-                        VALUES (?, ?, ?)`;
-
-            db.query(sql, params, (err, result) => {
+            db.query(`INSERT INTO role (title, salary, department_id)
+            VALUES (?, ?, ?)`, params, (err, result) => {
               if (err) {
                 console.log(err);
               }
