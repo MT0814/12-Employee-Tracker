@@ -152,14 +152,13 @@ const viewAllDepts = () => {
 
 // View employee by department
 const employeeByDept = () => {
-  const sql = `SELECT employee.first_name, 
+
+  db.query(`SELECT employee.first_name, 
                       employee.last_name, 
                       department.name AS department
                FROM employee 
                LEFT JOIN role ON employee.role_id = role.id 
-               LEFT JOIN department ON role.department_id = department.id`;
-
-  db.query(sql, (err, result) => {
+               LEFT JOIN department ON role.department_id = department.id`, (err, result) => {
     if (err) {
       console.log(err);
     }
@@ -170,11 +169,10 @@ const employeeByDept = () => {
 
 // View all roles 
 const viewAllRoles = () => {
-  const sql = `SELECT role.id, role.title, department.name AS department
-               FROM role
-               INNER JOIN department ON role.department_id = department.id`;
 
-  db.query(sql, (err, result) => {
+  db.query( `SELECT role.id, role.title, department.name AS department
+               FROM role
+               INNER JOIN department ON role.department_id = department.id`, (err, result) => {
     if (err) {
       console.log(err);
     }
